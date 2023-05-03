@@ -1,0 +1,28 @@
+class Solution{
+public:
+    bool makePalindrome(int n,vector<string> &arr){
+        // Code here
+        unordered_map<string,int> m;
+        for(int i=0;i<n;i++){
+            string s=arr[i];
+            reverse(s.begin(),s.end());
+            if(m.find(s)!=m.end()&&m[s]>0){
+                m[s]--;
+            }
+            else{
+                m[arr[i]]++;
+            }
+        }
+        for(auto i:m){
+            if(i.second>0){
+                string s=i.first;
+                reverse(s.begin(),s.end());
+                if(s!=i.first){
+                    return 0;
+                }
+            }
+        }
+        
+        return 1;
+    }
+};
