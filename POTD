@@ -1,0 +1,24 @@
+Solution:
+class Solution{
+	 public int maxSweetness(int[] sweetness, int n, int k) {
+        int l = 0, r = (int)1e9, mid;
+        while(l < r) {
+            mid = l + (r-l+1)/2;
+            if(check(mid, k, n, sweetness)) l = mid;
+            else r = mid - 1;
+        }
+        return l;
+    }
+    
+    public boolean check(int mid, int k, int n, int[] sweetness) {
+        int cnt = 0, sum = 0;
+        for(int i=0;i<n;i++) {
+            sum += sweetness[i];
+            if(sum >= mid) {
+                sum = 0;
+                cnt++;
+            }
+        }
+        return cnt >= k+1;
+    }
+}
